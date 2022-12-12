@@ -1,5 +1,14 @@
 ### Hi there 👋
-<img src="./Isuck.png" width="300">  
+
+<div align="center">
+  <img draggable="false" style="margin-top:18px; border-radius:50%; border:3px aqua solid width:180px; max-width:100%; height:auto;" src=https://cdn.discordapp.com/avatars/513592506458308608/cc5be1f31091ba59931a872f5d984f5c.webp?size=1024>
+  <h1>𝒁𝒉𝒆𝒏𝒚𝒖𝒂𝒏</h1>
+</div>
+
+<div align="center">
+  <a href="https://discord.gg/ZwJ876pNvm"><img src="https://discord.com/api/guilds/992455685835063346/widget.png?style=banner4"></a>
+  <img src="./Isuck.png" width="300"> 
+</div>
 
 <!--
 **awdrgyj8/awdrgyj8** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
