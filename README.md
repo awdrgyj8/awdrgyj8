@@ -1,8 +1,6 @@
-### Hi there 👋
-
 <div align="center">
-  <img draggable="false" style="margin-top:18px; border-radius:50%; border:3px aqua solid width:180px; max-width:100%; height:auto;" src=https://cdn.discordapp.com/avatars/513592506458308608/cc5be1f31091ba59931a872f5d984f5c.webp?size=1024>
-  <h1>𝒁𝒉𝒆𝒏𝒚𝒖𝒂𝒏</h1>
+    <img src="./avatar.jpg" style="width:180px; height:180px;">
+    𝒁𝒉𝒆𝒏𝒚𝒖𝒂𝒏
 </div>
 
 <div align="center">
@@ -10,17 +8,10 @@
   <img src="./Isuck.png" width="300"> 
 </div>
 
-<!--
-**awdrgyj8/awdrgyj8** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
