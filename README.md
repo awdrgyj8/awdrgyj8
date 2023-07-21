@@ -5,7 +5,7 @@
         <summary>Github Statistics</summary>
         <img src="https://github-readme-stats.vercel.app/api?username=awdrgyj8&show_icons=true&theme=one_dark_pro">
     </details>
-    <details open>
+    <details>
         <summary>Languages</summary>
         <img src="https://wakatime.com/share/@Zhenyuan/83f5dd42-03cb-472f-845c-5c2c25c19ef6.svg" height="500">
     </details>
