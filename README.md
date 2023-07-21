@@ -9,6 +9,5 @@
         <summary>Languages</summary>
         <img src="https://wakatime.com/share/@Zhenyuan/83f5dd42-03cb-472f-845c-5c2c25c19ef6.svg" height="500">
     </details>
-    <br>
     <a href="https://discord.gg/ZwJ876pNvm"><img src="https://discord.com/api/guilds/992455685835063346/widget.png?style=banner4"></a>
 </div>
