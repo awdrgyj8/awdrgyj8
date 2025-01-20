@@ -1,8 +1,7 @@
 <h1 align="center">Hi 👋, I'm Zhenyuan</h1>
 
-[![Discord Presence](https://lanyard.cnrad.dev/api/513592506458308608)](https://discord.com/users/513592506458308608)
-
 <a href="https://wakatime.com/@125ffe1f-f833-479f-bec1-9983c5b5f8dd"><img src="https://wakatime.com/badge/user/125ffe1f-f833-479f-bec1-9983c5b5f8dd.svg" alt="Loading"></a>
+[![Discord Presence](https://lanyard.cnrad.dev/api/513592506458308608)](https://discord.com/users/513592506458308608)
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
