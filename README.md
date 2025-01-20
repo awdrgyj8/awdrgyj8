@@ -3,7 +3,7 @@
 <a href="https://wakatime.com/@125ffe1f-f833-479f-bec1-9983c5b5f8dd"><img src="https://wakatime.com/badge/user/125ffe1f-f833-479f-bec1-9983c5b5f8dd.svg" alt="Loading"></a><br>
 [![Discord Presence](https://lanyard.cnrad.dev/api/513592506458308608)](https://discord.com/users/513592506458308608)
 
-- 🌍 I'm the owner of origincraft[OriginCraft](https://github.com/orgs/OriginCraft-Team). A fun minecraft server.
+- 🌍 I'm the owner of [OriginCraft](https://github.com/orgs/OriginCraft-Team). A fun minecraft server.
 - 🛰️ I'm the founder of [Gatheria](https://github.com/orgs/Gatheria) APP. A new generation of GPS social APP.
 
 <h3 align="left">Connect with me:</h3>
