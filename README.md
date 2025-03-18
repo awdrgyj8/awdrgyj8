@@ -1,5 +1,7 @@
 # 💫 About Me:
-Hi 👋, I'm Zhenyuan<br>🌍 I'm the owner of OriginCraft. A fun minecraft server.<br>🛰️ I'm the founder of Gatheria APP. A new generation of GPS social APP.<br><br>
+Hi 👋, I'm Zhenyuan<br>
+🌍 I'm the owner of [OriginCraft](https://origincraft.tw/). A fun minecraft server.<br>
+🛰️ I'm the founder of [Gatheria APP](https://github.com/Gatheria). A new generation of GPS social APP.<br><br>
 
 ## ⏱️Coding Time:</h3>
 <a href="https://wakatime.com/@125ffe1f-f833-479f-bec1-9983c5b5f8dd"><img src="https://wakatime.com/badge/user/125ffe1f-f833-479f-bec1-9983c5b5f8dd.svg" alt="Loading"></a><br>
