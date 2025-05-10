@@ -18,7 +18,7 @@ Hi 👋, I'm Zhenyuan<br>
 ![](https://nirzak-streak-stats.vercel.app/?user=awdrgyj8&theme=ambient_gradient&hide_border=true)<br/>
 <img src="./profile-3d-contrib/profile-night-rainbow.svg" height="400"><br/>
 
-### ✍️ Random Dev Quote
+### ✍️ Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=vetical&theme=dark)
 
 ---
