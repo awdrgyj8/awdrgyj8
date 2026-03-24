@@ -6,7 +6,7 @@
 
 <br>
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=20&duration=4000&pause=1000&color=FFAA00&center=true&vCenter=true&width=500&lines=Through+code,+one+can+craft+an+entire+world.&repeat=false" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=20&duration=4000&pause=1000&color=FFAA00&center=true&vCenter=true&width=650&lines=Through+code,+one+can+craft+an+entire+world.&repeat=false" alt="Typing SVG" /></a>
 
 <br>
 
