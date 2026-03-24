@@ -62,20 +62,15 @@
 ## 📊 GitHub Stats
 
 <div align="center">
-
-<a href="https://wakatime.com/@125ffe1f-f833-479f-bec1-9983c5b5f8dd"><img src="https://wakatime.com/badge/user/125ffe1f-f833-479f-bec1-9983c5b5f8dd.svg" alt="WakaTime Coding Stats"></a>
-
-<br><br>
-
-<img src="https://github-readme-stats.vercel.app/api?username=awdrgyj8&theme=ambient_gradient&hide_border=true&include_all_commits=true&count_private=true" width="48%">
-<img src="https://nirzak-streak-stats.vercel.app/?user=awdrgyj8&theme=ambient_gradient&hide_border=true" width="48%">
+<br>
+  
+<!--START_SECTION:waka-->
+<!--END_SECTION:waka-->
 
 <br>
 
+[![GitHub Streak](https://streak-stats.demolab.com?user=awdrgyj8&theme=catppuccin-mocha&hide_border=true)](https://git.io/streak-stats)
+
 <img src="./profile-3d-contrib/profile-night-rainbow.svg" height="350">
-
-<br><br>
-
-[![](https://visitcount.itsvg.in/api?id=awdrgyj8&icon=0&color=0)](https://visitcount.itsvg.in)
 
 </div>
