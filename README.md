@@ -15,7 +15,7 @@
 
 <br>
 
-[![Discord Presence](https://lanyard.cnrad.dev/api/513592506458308608)](https://discord.com/users/513592506458308608)
+[![Discord Presence](https://lanyard.cnrad.dev/api/513592506458308608?bg=0379FF&showDisplayName=true&borderRadius=20px)](https://discord.com/users/513592506458308608)
 
 ### 🌐 Socials & Connect
 [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/ZwJ876pNvm)
