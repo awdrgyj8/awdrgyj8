@@ -65,17 +65,17 @@
 <!--START_SECTION:waka-->
 
 ```txt
-From: 20 July 2023 - To: 04 June 2026
+From: 20 July 2023 - To: 05 June 2026
 
-Total Time: 649 hrs 21 mins
+Total Time: 655 hrs 51 mins
 
-Java              157 hrs 34 mins       ██████░░░░░░░░░░░░░░░░░░░   23.81 %
-TypeScript        111 hrs 37 mins       ████▒░░░░░░░░░░░░░░░░░░░░   16.86 %
-Vue.js            71 hrs 26 mins        ██▓░░░░░░░░░░░░░░░░░░░░░░   10.79 %
-Python            50 hrs 41 mins        ██░░░░░░░░░░░░░░░░░░░░░░░   07.66 %
-JavaScript        36 hrs 8 mins         █▒░░░░░░░░░░░░░░░░░░░░░░░   05.46 %
-Astro             13 hrs 11 mins        ▒░░░░░░░░░░░░░░░░░░░░░░░░   01.99 %
-Other             12 hrs 32 mins        ▒░░░░░░░░░░░░░░░░░░░░░░░░   01.90 %
+Java              160 hrs 59 mins       ██████░░░░░░░░░░░░░░░░░░░   24.08 %
+TypeScript        111 hrs 46 mins       ████▒░░░░░░░░░░░░░░░░░░░░   16.72 %
+Vue.js            71 hrs 26 mins        ██▓░░░░░░░░░░░░░░░░░░░░░░   10.69 %
+Python            50 hrs 41 mins        ██░░░░░░░░░░░░░░░░░░░░░░░   07.58 %
+JavaScript        36 hrs 8 mins         █▒░░░░░░░░░░░░░░░░░░░░░░░   05.41 %
+Astro             13 hrs 11 mins        ▒░░░░░░░░░░░░░░░░░░░░░░░░   01.97 %
+Other             12 hrs 42 mins        ▒░░░░░░░░░░░░░░░░░░░░░░░░   01.90 %
 ```
 
 <!--END_SECTION:waka-->
