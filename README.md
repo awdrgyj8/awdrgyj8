@@ -65,19 +65,19 @@
 <!--START_SECTION:waka-->
 
 ```txt
-From: 20 July 2023 - To: 29 June 2026
+From: 20 July 2023 - To: 01 July 2026
 
-Total Time: 731 hrs 12 mins
+Total Time: 738 hrs 4 mins
 
-Java              179 hrs 33 mins       ██████░░░░░░░░░░░░░░░░░░░   24.12 %
-TypeScript        116 hrs 48 mins       ████░░░░░░░░░░░░░░░░░░░░░   15.69 %
-Vue.js            71 hrs 26 mins        ██▒░░░░░░░░░░░░░░░░░░░░░░   09.60 %
-Python            51 hrs 54 mins        █▓░░░░░░░░░░░░░░░░░░░░░░░   06.97 %
-JavaScript        37 hrs 4 mins         █▒░░░░░░░░░░░░░░░░░░░░░░░   04.98 %
-Markdown          20 hrs 2 mins         ▓░░░░░░░░░░░░░░░░░░░░░░░░   02.69 %
-Vue               15 hrs 33 mins        ▓░░░░░░░░░░░░░░░░░░░░░░░░   02.09 %
-Swift             15 hrs 1 min          ▓░░░░░░░░░░░░░░░░░░░░░░░░   02.02 %
-Astro             14 hrs 46 mins        ▒░░░░░░░░░░░░░░░░░░░░░░░░   01.98 %
+Java              182 hrs 31 mins       ██████░░░░░░░░░░░░░░░░░░░   24.29 %
+TypeScript        116 hrs 48 mins       ████░░░░░░░░░░░░░░░░░░░░░   15.54 %
+Vue.js            71 hrs 26 mins        ██▒░░░░░░░░░░░░░░░░░░░░░░   09.51 %
+Python            52 hrs 10 mins        █▓░░░░░░░░░░░░░░░░░░░░░░░   06.94 %
+JavaScript        37 hrs 4 mins         █▒░░░░░░░░░░░░░░░░░░░░░░░   04.93 %
+Markdown          20 hrs 29 mins        ▓░░░░░░░░░░░░░░░░░░░░░░░░   02.73 %
+Vue               15 hrs 33 mins        ▓░░░░░░░░░░░░░░░░░░░░░░░░   02.07 %
+Swift             15 hrs 1 min          ▓░░░░░░░░░░░░░░░░░░░░░░░░   02.00 %
+Astro             14 hrs 46 mins        ▒░░░░░░░░░░░░░░░░░░░░░░░░   01.97 %
 ```
 
 <!--END_SECTION:waka-->
