@@ -1,0 +1,13 @@
+{
+  "total": "1,053 hrs 30 mins",
+  "languages": [
+    { "name": "Java", "seconds": 678660, "text": "188 hrs 31 mins" },
+    { "name": "TypeScript", "seconds": 664320, "text": "184 hrs 32 mins" },
+    { "name": "Markdown", "seconds": 342900, "text": "95 hrs 15 mins" },
+    { "name": "Vue", "seconds": 279900, "text": "77 hrs 45 mins" },
+    { "name": "Vue.js", "seconds": 257160, "text": "71 hrs 26 mins" },
+    { "name": "Python", "seconds": 245820, "text": "68 hrs 17 mins" },
+    { "name": "JavaScript", "seconds": 176940, "text": "49 hrs 9 mins" },
+    { "name": "Other", "seconds": 97080, "text": "26 hrs 58 mins" }
+  ]
+}

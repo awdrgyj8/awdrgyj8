@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WakaTime Flight</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  html, body { margin: 0; height: 100%; background: #04050d; overflow: hidden; }
+  #sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #fade { position: absolute; inset: 0; background: #04050d; opacity: 0; }
+  #total {
+    position: absolute; top: 16px; left: 20px; margin: 0;
+    color: #e8ecff;
+    font: 700 34px/1 "Chakra Petch", "Avenir Next Condensed", sans-serif;
+    letter-spacing: 0.02em;
+  }
+  #total small { font-size: 0.45em; font-weight: 500; color: #8088b8; letter-spacing: 0.08em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<h1 id="total"></h1>
+<div id="fade"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  const PALETTE = {
+    "Java": "#ff7a45", "TypeScript": "#4a8dff", "Markdown": "#b58cff", "Vue": "#42e8a0",
+    "Vue.js": "#19c7b0", "Python": "#7df9ff", "JavaScript": "#f5e663", "Other": "#9aa0c4",
+    "Kotlin": "#c77dff", "Swift": "#ff8a5c", "C#": "#6ee07a", "C": "#8fb3d9", "C++": "#ff7fb0",
+    "Dart": "#5ad1e6", "PHP": "#9c9cf0", "HTML": "#ff9d6e", "CSS": "#7aa2ff", "Go": "#66e0f0",
+    "Rust": "#f0a37a", "Bash": "#a8e06e", "SQL": "#f0c26e"
+  };
+  const SPARE_COLORS = ["#ff6fb5", "#8affc1", "#ffd36e", "#6ea8ff", "#d0a0ff", "#7fe7ff", "#ffa07a", "#c8f06e"];
+  const LANGS = window.WAKA.languages.map(function (lang, i) {
+    return { name: lang.name, hrs: lang.seconds / 3600, time: lang.text, color: PALETTE[lang.name] || SPARE_COLORS[i % SPARE_COLORS.length] };
+  });
+  const PER_ROW = Math.ceil(LANGS.length / 2);
+  document.getElementById("total").innerHTML = window.WAKA.total
+    .replace(/[<>&]/g, "")
+    .replace(/[a-z]+/gi, function (unit) { return "<small>" + unit + "</small>"; });
+  const FLY_SECONDS = 12;
+  const HOLD_SECONDS = 9;
+  const FADE_SECONDS = 0.7;
+  const TOTAL_SECONDS = FLY_SECONDS + HOLD_SECONDS;
+  const AVENUE_HALF_WIDTH = 6;
+  const ROW_PITCH = 7;
+  const FLIGHT_FOV = 78;
+  const OVERVIEW_FOV = 45;
+  const LABEL_WIDTH = 8;
+  const CENTER = new THREE.Vector3(-1, 9, 3);
+  const TOWER_WIDTH = 5;
+
+  const canvas = document.getElementById("sky");
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color("#04050d");
+  scene.fog = new THREE.FogExp2("#070a22", 0.012);
+  const camera = new THREE.PerspectiveCamera(78, 1, 0.1, 600);
+
+  function seeded(seed) {
+    let s = seed;
+    return function () {
+      s = (s * 16807) % 2147483647;
+      return (s - 1) / 2147483646;
+    };
+  }
+  const rand = seeded(20230720);
+
+  const grid = new THREE.GridHelper(600, 150, "#2de2ff", "#2de2ff");
+  grid.material.transparent = true;
+  grid.material.opacity = 0.22;
+  scene.add(grid);
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(1200, 1200),
+    new THREE.MeshBasicMaterial({ color: "#04050d" })
+  );
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.y = -0.05;
+  scene.add(ground);
+
+  function glowTexture() {
+    const c = document.createElement("canvas");
+    c.width = c.height = 128;
+    const g = c.getContext("2d");
+    const grad = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    grad.addColorStop(0, "rgba(255,255,255,1)");
+    grad.addColorStop(0.35, "rgba(255,255,255,0.35)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, 128, 128);
+    return new THREE.CanvasTexture(c);
+  }
+  const glow = glowTexture();
+
+  function windowTexture(color, height) {
+    const c = document.createElement("canvas");
+    c.width = 64;
+    c.height = Math.max(64, Math.round(height * 14));
+    const g = c.getContext("2d");
+    g.fillStyle = "#070919";
+    g.fillRect(0, 0, c.width, c.height);
+    g.fillStyle = color;
+    for (let y = 4; y < c.height - 4; y += 7) {
+      for (let x = 5; x < 60; x += 9) {
+        const r = rand();
+        if (r < 0.45) continue;
+        g.globalAlpha = r < 0.8 ? 0.35 : 0.95;
+        g.fillRect(x, y, 5, 3);
+      }
+    }
+    return new THREE.CanvasTexture(c);
+  }
+
+  function labelSprite(lang) {
+    const c = document.createElement("canvas");
+    c.width = 512; c.height = 192;
+    const g = c.getContext("2d");
+    g.textAlign = "center";
+    g.shadowColor = lang.color;
+    g.shadowBlur = 22;
+    g.fillStyle = "#ffffff";
+    g.font = "700 76px 'Chakra Petch', 'Avenir Next Condensed', sans-serif";
+    g.fillText(lang.name, 256, 84);
+    g.shadowBlur = 0;
+    g.fillStyle = lang.color;
+    g.font = "600 40px 'JetBrains Mono', ui-monospace, monospace";
+    g.fillText(lang.time.replace(/ mins?/, "m").replace(/ hrs?/, "h"), 256, 148);
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false, fog: false
+    }));
+    sprite.scale.set(LABEL_WIDTH, LABEL_WIDTH * 0.375, 1);
+    return sprite;
+  }
+
+  const towers = [];
+  function buildTowers() {
+    const maxHrs = Math.max.apply(null, LANGS.map(function (l) { return l.hrs; }));
+    LANGS.forEach(function (lang, i) {
+      const h = 3 + 15 * lang.hrs / maxHrs;
+      const tallRow = i < PER_ROW;
+      const x = tallRow ? -AVENUE_HALF_WIDTH : AVENUE_HALF_WIDTH;
+      const z = ROW_PITCH * ((PER_ROW - 1) / 2 - (i % PER_ROW));
+      const group = new THREE.Group();
+      group.position.set(x, 0, z);
+
+      const geo = new THREE.BoxGeometry(TOWER_WIDTH, h, TOWER_WIDTH);
+      const body = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: windowTexture(lang.color, h) }));
+      body.position.y = h / 2;
+      group.add(body);
+
+      const edges = new THREE.LineSegments(
+        new THREE.EdgesGeometry(geo),
+        new THREE.LineBasicMaterial({ color: lang.color })
+      );
+      edges.position.y = h / 2;
+      group.add(edges);
+
+      const pad = new THREE.Mesh(
+        new THREE.PlaneGeometry(14, 14),
+        new THREE.MeshBasicMaterial({
+          map: glow, color: lang.color, transparent: true, opacity: 0.55,
+          blending: THREE.AdditiveBlending, depthWrite: false
+        })
+      );
+      pad.rotation.x = -Math.PI / 2;
+      pad.position.y = 0.05;
+      group.add(pad);
+
+      const crown = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: glow, color: lang.color, transparent: true,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      crown.scale.set(6, 6, 1);
+      crown.position.y = h;
+      group.add(crown);
+
+      const label = labelSprite(lang);
+      label.position.y = h + 3.2;
+      group.add(label);
+
+      scene.add(group);
+      towers.push({ lang: lang, x: x, z: z });
+    });
+  }
+
+  function buildSkyline() {
+    const count = 520;
+    const mesh = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(1, 1, 1),
+      new THREE.MeshBasicMaterial({ color: "#ffffff" }),
+      count
+    );
+    const m = new THREE.Matrix4();
+    const tint = new THREE.Color();
+    for (let i = 0; i < count; i++) {
+      const far = i > 300;
+      const r = far ? 70 + rand() * 150 : 48 + rand() * 22;
+      const a = rand() * Math.PI * 2;
+      const w = 1.2 + rand() * (far ? 5 : 2.2);
+      const h = far ? 2 + rand() * 16 : 0.4 + rand() * 2;
+      m.makeScale(w, h, w);
+      m.setPosition(Math.cos(a) * r, h / 2, Math.sin(a) * r);
+      mesh.setMatrixAt(i, m);
+      tint.setHSL(0.62 + rand() * 0.08, 0.6, 0.07 + rand() * 0.07);
+      mesh.setColorAt(i, tint);
+    }
+    scene.add(mesh);
+  }
+
+  function buildDust() {
+    const count = 2600;
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      pos[i * 3] = (rand() - 0.5) * 220;
+      pos[i * 3 + 1] = 0.5 + rand() * 60;
+      pos[i * 3 + 2] = (rand() - 0.5) * 220;
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    scene.add(new THREE.Points(geo, new THREE.PointsMaterial({
+      map: glow, color: "#bcd0ff", size: 0.55, transparent: true, opacity: 0.8,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    })));
+  }
+
+  let path = null;
+  const overview = new THREE.Vector3();
+  function layFlightPath() {
+    overview.set(24.5, 44, 0);
+    path = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0, 4, 44),
+      new THREE.Vector3(0, 4.5, 14),
+      new THREE.Vector3(0, 5.5, -10),
+      new THREE.Vector3(2, 7, -20),
+      new THREE.Vector3(9, 12, -29),
+      new THREE.Vector3(21, 22, -28),
+      new THREE.Vector3(28, 34, -15),
+      overview.clone()
+    ]);
+  }
+
+  function smooth(from, to, x) {
+    const k = Math.max(0, Math.min(1, (x - from) / (to - from)));
+    return k * k * (3 - 2 * k);
+  }
+
+  const here = new THREE.Vector3();
+  const ahead = new THREE.Vector3();
+  const forward = new THREE.Quaternion();
+  const fadeEl = document.getElementById("fade");
+  function frame(time) {
+    let fov = OVERVIEW_FOV;
+    let lookBlend = 1;
+    if (time <= FLY_SECONDS) {
+      const u = 1 - Math.pow(1 - time / FLY_SECONDS, 1.5);
+      path.getPointAt(u, here);
+      fov = FLIGHT_FOV + (OVERVIEW_FOV - FLIGHT_FOV) * smooth(0.45, 0.95, u);
+      path.getPointAt(Math.min(u + 0.04, 1), ahead);
+      lookBlend = smooth(0.44, 0.8, u);
+    } else {
+      const s = (time - FLY_SECONDS) / HOLD_SECONDS;
+      const swing = -0.3 * Math.pow(Math.sin(Math.PI * s), 2);
+      here.set(Math.cos(swing) * overview.x, overview.y, Math.sin(swing) * overview.x);
+    }
+    camera.fov = fov;
+    camera.updateProjectionMatrix();
+    camera.position.copy(here);
+    camera.lookAt(ahead);
+    forward.copy(camera.quaternion);
+    camera.lookAt(CENTER);
+    camera.quaternion.copy(forward.slerp(camera.quaternion, lookBlend));
+    fadeEl.style.opacity = Math.max(0, 1 - time / FADE_SECONDS, 1 - (TOTAL_SECONDS - time) / FADE_SECONDS);
+    renderer.render(scene, camera);
+  }
+
+  function resize() {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  function start() {
+    buildTowers();
+    buildSkyline();
+    buildDust();
+    layFlightPath();
+    resize();
+    window.SCENE_SECONDS = TOTAL_SECONDS;
+    window.renderFrame = frame;
+  }
+  const fontsReady = document.fonts && document.fonts.load
+    ? Promise.all([document.fonts.load("700 76px 'Chakra Petch'"), document.fonts.load("600 40px 'JetBrains Mono'")])
+    : Promise.resolve();
+  window.sceneReady = Promise.race([fontsReady, new Promise(function (r) { setTimeout(r, 8000); })]).then(start, start);
+})();
+</script>
+
+</body>
+</html>

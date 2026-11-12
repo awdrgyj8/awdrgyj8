@@ -1,0 +1,39 @@
+name: WakaTime Flight
+
+on:
+  workflow_dispatch:
+  schedule: # 00:30 CST (Taiwan) == 16:30 UTC
+    - cron: "30 16 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    name: render-wakatime-flight
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: wakatime-flight
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: wakatime-flight/package-lock.json
+      - run: npm ci
+      - name: Render animation
+        run: node render.mjs
+        env:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          IGNORED_LANGUAGES: YAML JSON TOML
+      - name: Publish to output branch
+        working-directory: wakatime-flight/dist
+        run: |
+          git init -q -b output
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add wakatime-flight.webp
+          git commit -q -m "generated"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" output
