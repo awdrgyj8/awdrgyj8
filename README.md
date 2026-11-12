@@ -62,6 +62,8 @@
 ## 📈 Development Activity & Stats
 
 ### ⏱️ Coding Time
+<img src="https://raw.githubusercontent.com/awdrgyj8/awdrgyj8/output/wakatime-flight.webp" width="100%" alt="Flight over towers sized by WakaTime coding hours per language">
+
 <!--START_SECTION:waka-->
 
 ```txt
