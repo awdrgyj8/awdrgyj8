@@ -9,9 +9,9 @@
   #sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   #fade { position: absolute; inset: 0; background: #04050d; opacity: 0; }
   #total {
-    position: absolute; top: 16px; left: 20px; margin: 0;
+    position: absolute; top: 2vw; left: 2.5vw; margin: 0;
     color: #e8ecff;
-    font: 700 34px/1 "Chakra Petch", "Avenir Next Condensed", sans-serif;
+    font: 700 4.25vw/1 "Chakra Petch", "Avenir Next Condensed", sans-serif;
     letter-spacing: 0.02em;
   }
   #total small { font-size: 0.45em; font-weight: 500; color: #8088b8; letter-spacing: 0.08em; text-transform: uppercase; }
@@ -47,12 +47,12 @@
   const ROW_PITCH = 7;
   const FLIGHT_FOV = 78;
   const OVERVIEW_FOV = 45;
-  const LABEL_WIDTH = 8;
+  const LABEL_WIDTH = 9;
   const CENTER = new THREE.Vector3(-1, 9, 3);
   const TOWER_WIDTH = 5;
 
   const canvas = document.getElementById("sky");
-  const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false });
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color("#04050d");
@@ -115,22 +115,22 @@
 
   function labelSprite(lang) {
     const c = document.createElement("canvas");
-    c.width = 512; c.height = 192;
+    c.width = 512; c.height = 232;
     const g = c.getContext("2d");
     g.textAlign = "center";
     g.shadowColor = lang.color;
     g.shadowBlur = 22;
     g.fillStyle = "#ffffff";
     g.font = "700 76px 'Chakra Petch', 'Avenir Next Condensed', sans-serif";
-    g.fillText(lang.name, 256, 84);
+    g.fillText(lang.name, 256, 80);
     g.shadowBlur = 0;
     g.fillStyle = lang.color;
-    g.font = "600 40px 'JetBrains Mono', ui-monospace, monospace";
-    g.fillText(lang.time.replace(/ mins?/, "m").replace(/ hrs?/, "h"), 256, 148);
+    g.font = "600 60px 'JetBrains Mono', ui-monospace, monospace";
+    g.fillText(lang.time.replace(/ mins?/, "m").replace(/ hrs?/, "h"), 256, 168);
     const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
       map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false, fog: false
     }));
-    sprite.scale.set(LABEL_WIDTH, LABEL_WIDTH * 0.375, 1);
+    sprite.scale.set(LABEL_WIDTH, LABEL_WIDTH * 232 / 512, 1);
     return sprite;
   }
 
@@ -172,12 +172,12 @@
         map: glow, color: lang.color, transparent: true,
         blending: THREE.AdditiveBlending, depthWrite: false
       }));
-      crown.scale.set(6, 6, 1);
+      crown.scale.set(4, 4, 1);
       crown.position.y = h;
       group.add(crown);
 
       const label = labelSprite(lang);
-      label.position.y = h + 3.2;
+      label.position.y = h + 3.6;
       group.add(label);
 
       scene.add(group);
