@@ -77,7 +77,7 @@ function encode() {
       "-c:v", "libwebp_anim",
       "-loop", "0",
       "-q:v", "75",
-      "-compression_level", "6",
+      "-compression_level", "4",
       OUTPUT_FILE,
     ],
     { stdio: "inherit" },
