@@ -11,7 +11,7 @@ const OUTPUT_DIR = join(ROOT, "dist");
 const OUTPUT_FILE = join(OUTPUT_DIR, "wakatime-flight.webp");
 const WIDTH = 1040;
 const HEIGHT = 520;
-const FPS = 12;
+const FPS = 15;
 const MAX_TOWERS = 8;
 const IGNORED = new Set((process.env.IGNORED_LANGUAGES ?? "YAML JSON TOML").split(/\s+/).filter(Boolean));
 
