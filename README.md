@@ -64,6 +64,9 @@
 ### ⏱️ Coding Time
 <img src="https://raw.githubusercontent.com/awdrgyj8/awdrgyj8/output/wakatime-flight.webp" width="100%" alt="Flight over towers sized by WakaTime coding hours per language">
 
+<details>
+<summary>詳細數據</summary>
+
 <!--START_SECTION:waka-->
 
 ```txt
@@ -82,6 +85,9 @@ Other             30 hrs 11 mins        ▓░░░░░░░░░░░░�
 ```
 
 <!--END_SECTION:waka-->
+
+</details>
+
 <br>
 
 <div align="center">
